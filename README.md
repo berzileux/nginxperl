@@ -33,8 +33,8 @@ This is just a base container for nginx/perl
 There are three volumes defined in this image:
 
 - `/var/nginx/www`
-- `/var/nginx/config`
-- `/opt/nginx/perl/lib`
+- `/etc/config`
+- `/opt/nginx-perl/modules`
 
 # Thanks to
 

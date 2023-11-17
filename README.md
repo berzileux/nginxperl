@@ -1,6 +1,6 @@
 ![Docker & Nginx & Perl](https://cloud.githubusercontent.com/assets/6241518/4104908/424e46f8-319b-11e4-9a2e-49a8cc49951c.jpg)
 
-**docker-nginx-perl** is a CentOS-based docker container for [Nginx](http://nginx.org) + [Perl](http://www.cpan.org/). It is intended for use with [belabs/ngperlapi](https://github.com/belabs/docker-perlapi).
+**docker-nginx-perl** is a CentOS-based docker container for [Nginx](http://nginx.org) + [Perl](http://www.cpan.org/). It is intended for use with [belabs/ngperlapi](https://github.com/berzileux/ngperlapi).
 
 Nginx 1.9.2 is compiled from source with the below modules enabled:
 - http_ssl_module - for HTTPS support

@@ -1,6 +1,6 @@
 FROM centos:centos7
 
-MAINTAINER "bersileus" <bersileus@gmail.com>
+MAINTAINER "freeperls" <berzileux@gmail.com>
 
 ENV PERL_VERSION=5.38.0
 ENV NGINX_VERSION=1.25.3
@@ -125,26 +125,28 @@ RUN chmod u=rwx /opt/bin/nginx-start && \
     		/etc/nginx/nginx.conf \
     		/var/log/nginx \
     		/var/nginx/www/ \
-    		/opt/perl
+    		/opt/perl \
+    		/usr/bin/cpanm
 
 # Install at least default perl modules
-ENV PATH="/opt/perl/localperl/bin:${PATH}"
+ENV PATH="/usr/bin/cpanm:/opt/perl/localperl/bin:${PATH}"
 
-RUN cpanm aliased && \
-    cpanm ExtUtils::Embed && \
-    cpanm Try::Tiny && \
-    cpanm Log::Log4perl
+# defaults the most common perl mods
+RUN ["cpanm", "aliased", "ExtUtils::Embed", "Try::Tiny", "Log::Log4perl", "JSON" ]
+RUN ["cpanm", "DateTime", "DBI", "LWP::UserAgent", "XML::Simple", "XML::Parser", "HTTP::Response"]
+
+# make sure we are in nginx:nginx permission only
+RUN chown -R nginx:nginx /opt/perl/localperl/lib/site_perl/$PERL_VERSION/
+
+# For Views if any
+RUN mkdir -p /var/nginx/www/
 
 # DATA VOLUMES
-RUN mkdir -p /var/nginx/www/
 VOLUME ["/var/nginx/www/"]
-
 VOLUME ["/etc/nginx/"]
 VOLUME ["/opt/nginx-perl/modules/x86_64-linux"]
 
-WORKDIR /opt/nginx-perl/modules
-
-
+WORKDIR /var/log/nginx
 
 # PORTS
 EXPOSE 80

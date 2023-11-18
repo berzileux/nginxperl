@@ -1,6 +1,6 @@
 FROM centos:centos7
 
-MAINTAINER "freeperls" <berzileux@gmail.com>
+MAINTAINER "berlabs" <berzileux.berlabs@gmail.com>
 
 ENV PERL_VERSION=5.38.0
 ENV NGINX_VERSION=1.25.3
